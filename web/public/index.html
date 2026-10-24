@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light" />
+    <title>勇志祭</title>
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+    <style>
+      * {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      input,
+      textarea {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-white text-gray-800"
+    style="
+      font-family:
+        system-ui,
+        -apple-system,
+        &quot;Hiragino Sans&quot;,
+        &quot;Noto Sans JP&quot;,
+        sans-serif;
+      padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+    "
+  >
+    <div
+      id="app"
+      class="relative mx-auto min-h-screen max-w-md"
+      style="
+        padding-bottom: 150px;
+        min-height: calc(
+          100dvh - env(safe-area-inset-top, 0px) -
+            env(safe-area-inset-bottom, 0px)
+        );
+      "
+    ></div>
+    <script src="/shared/common.js"></script>
+    <script src="/public/app.js"></script>
+  </body>
+</html>

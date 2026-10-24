@@ -1,0 +1,43 @@
+/* ============================================================
+   cafe専用の部品。共通の部品(色・ボタン・カードなど)は /shared/ui.css。
+   ============================================================ */
+
+/* ----- 上のバーの、通信の状態(posと同じ) ----- */
+.ws { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #cbd5e1; }
+.ws i { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+.ws.off { color: #fca5a5; }
+.ws.off i { background: var(--red); }
+
+/* ----- 未提供: 卓ごとのカード(待ち時間が長いと、枠が黄色→赤になる) ----- */
+.summary { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+.summary b { color: var(--fg); font-size: 18px; }
+.cq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.cq-card { display: flex; flex-direction: column; padding: 16px; background: #fff; border: 2px solid var(--line); border-radius: 12px; }
+.cq-card.warn { border-color: #fbbf24; }
+.cq-card.danger { border-color: #f87171; }
+.cq-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.cq-top .t { font-size: 26px; font-weight: 800; }
+.wait { padding: 2px 12px; border-radius: 999px; background: #f3f4f6; color: #4b5563; font-size: 14px; }
+.wait.warn { background: #fef3c7; color: #92400e; }
+.wait.danger { background: #fee2e2; color: #b91c1c; }
+.cq-items { flex: 1; }
+.cq-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.cq-item:first-child { border-top: 0; }
+.cq-item.fresh { background: #dbeafe; }          /* 新しく入った注文(2.5秒だけ色が付く) */
+.cq-item .nm { flex: 1; font-size: 18px; }
+.tag-in { color: var(--gray); font-size: 12px; }
+.tp { padding-left: 12px; color: var(--muted); font-size: 15px; }
+.btn-soft { padding: 10px 22px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.cq-card .btn-lg { margin-top: 12px; }
+
+/* ----- 提供済み: 一覧 ----- */
+.sv-list { background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.sv-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line); }
+.sv-row:first-child { border-top: 0; }
+.sv-row .tm { width: 3.5rem; color: var(--muted); font-size: 14px; }
+.sv-row .tb { width: 3.5rem; font-size: 18px; font-weight: 800; }
+.sv-row .nm { flex: 1; font-size: 18px; }
+
+/* ----- 空のとき ----- */
+.empty-big { padding-top: 96px; text-align: center; }
+.empty-big b { display: block; margin-bottom: 4px; font-size: 20px; }

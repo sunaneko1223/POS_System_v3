@@ -1,0 +1,44 @@
+# 勇志祭 POS 設定ファイル
+# 初回起動時にDBへ取り込む初期値です。2回目以降はDBの値(管理タブで編集した内容)が優先されます。
+# 金額の単位は円、すべて整数で書いてください。
+
+event:
+  name: 勇志祭
+
+pricing:
+  entrance_fee_per_person: 300   # 仮。入場ドリンク代込み(1人あたり)
+
+game:
+  initial_games: 2               # 最初に遊べるゲーム数
+  max_games: 6                   # フードで増えるゲームの上限(これを超えて遊ぶ分は、追加ゲームを買う)
+  games_per_food: 2              # フード1品ごとに増えるゲーム数
+
+limits:
+  max_people: 10                 # 1卓あたりの最大人数
+  max_qty_per_item: 10           # 1回の注文での1品あたり最大数量
+
+ui:
+  wait_warn_min: 5               # cafe画面で黄色にする待ち時間(分)
+  wait_danger_min: 10            # cafe画面で赤にする待ち時間(分)
+
+security:
+  staff_token_hours: 12          # 通常用トークン(レジ・cafe)の有効時間
+  admin_token_min: 30            # 管理用トークンの有効時間(分)
+  login_max_fails: 5             # PINをこの回数続けて間違えるとロック(IPごと)
+  login_lock_sec: 180            # ロックする秒数
+  api_limit_per_min: 1200        # 1つのIPが1分間に送れるAPIの上限
+
+tables: [A1, B2, C3, D4, E5]
+
+
+menu:
+  drinks:
+    - { id: d1, name: ごっくごくMILKティー, price: 100 }
+    - { id: d2, name: とろんとろんRINGOジュース, price: 100 }
+    - { id: d3, name: ばっちばちSAIDAー, price: 100 }
+  foods:
+    - { id: f1, name: ドッキドキカジノわくわく盛り合わせセット, price: 300 }
+    - { id: f2, name: キラッキラカジノヒヤヒヤブラウニー, price: 300 }
+    - { id: f3, name: カステラ, price: 300 }
+  gamecoins:                    
+    - { id: g1, name: 1ゲーム, price: 100, games: 1 }

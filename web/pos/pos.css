@@ -1,0 +1,91 @@
+/* ============================================================
+   レジ(pos)専用の部品。共通の部品(色・ボタン・カードなど)は /shared/ui.css。
+   ============================================================ */
+
+/* ----- 上のバーの、通信の状態 ----- */
+.ws { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #cbd5e1; }
+.ws i { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+.ws.off { color: #fca5a5; }
+.ws.off i { background: var(--red); }
+
+/* ----- レジ1: 左に卓、右に注文内容 ----- */
+.split { display: grid; grid-template-columns: 1fr 360px; gap: 20px; align-items: start; }
+.panel { position: sticky; top: 92px; }
+.tcard { cursor: pointer; }
+.tcard.sel { outline: 4px solid var(--blue); outline-offset: 2px; }
+.tcard.free { color: var(--gray); }
+.empty { padding: 40px 10px; text-align: center; color: var(--muted); }
+
+.lines { margin: 4px 0 8px; }
+.line { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.line .nm { font-weight: 600; }
+.line .sub { color: var(--muted); font-size: 13px; }
+.sum { display: flex; align-items: baseline; justify-content: space-between; margin: 12px 0; font-size: 20px; font-weight: 800; }
+.sum .yen { font-size: 30px; }
+
+/* トッピング(フードの下に、字下げして出す) */
+.tp { padding-left: 14px; color: var(--muted); font-size: 14px; }
+
+/* ----- レジ2: お支払い ----- */
+.pay { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; max-width: 920px; margin: 8px auto; }
+.amounts { padding: 24px 28px; background: var(--soft); border: 1px solid var(--line); border-radius: 16px; }
+.pay-table { margin: 0 0 14px; font-size: 16px; font-weight: 700; }
+.amt-label { font-size: 14px; font-weight: 700; color: var(--muted); }
+.amt { margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 48px; font-weight: 800; line-height: 1.2; }
+.amt.blue { color: var(--blue); }
+.amt.green { color: #059669; margin-bottom: 0; border-bottom: 0; }
+.short { min-height: 22px; margin-top: 8px; color: #dc2626; font-size: 14px; font-weight: 700; }
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.key {
+  min-height: 84px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  font: inherit;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--fg);
+  cursor: pointer;
+}
+.key:active { background: var(--soft); }
+.key.bs { background: var(--red); border-color: var(--red); color: #fff; }
+.key.clr { background: var(--yellow); border-color: var(--yellow); color: #1f2937; }
+
+/* ----- レジ3: お会計完了 ----- */
+.done { max-width: 920px; margin: 4px auto; text-align: center; }
+.big-label { font-size: 15px; font-weight: 700; color: var(--muted); }
+.big-no { font-size: 110px; font-weight: 800; line-height: 1.1; color: var(--red); }
+.big-amt { font-size: 56px; font-weight: 800; line-height: 1.2; color: #059669; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; text-align: left; }
+.cols h3 { margin: 0 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--line); font-size: 15px; color: var(--muted); }
+.box { padding: 12px 16px; background: var(--soft); border-radius: 12px; font-size: 15px; }
+.box .l { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; }
+.box .none { color: var(--gray); }
+.done .btn-lg { max-width: 480px; }
+
+/* ----- レジ4: 取引履歴 ----- */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; color: var(--muted); }
+.stats b { font-size: 17px; color: var(--fg); }
+.stats .ok { color: #059669; }
+.stats .neg { color: #dc2626; }
+@media (max-width: 520px) { .stats { grid-template-columns: 1fr; } } /* スマホでは、1列にして、文字が折り返さないようにする */
+.sale { padding: 16px 18px; margin-bottom: 12px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+.sale .top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.sale .top .tb { font-size: 20px; color: #2563eb; }
+.sale .top .sale-amt { font-size: 20px; font-weight: 800; }
+.sale .at { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+.sale .li { font-size: 14px; color: #374151; }
+.sale .foot2 { margin-top: 8px; text-align: right; color: var(--muted); font-size: 14px; }
+
+/* ----- 狭い画面 ----- */
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  .panel { position: static; }
+}
+@media (max-width: 720px) {
+  .pay, .cols { grid-template-columns: 1fr; }
+  .amt { font-size: 40px; }
+  .big-no { font-size: 80px; }
+  .key { min-height: 72px; }
+}

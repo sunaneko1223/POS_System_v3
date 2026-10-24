@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>勇志祭 レジマニュアル</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        background-color: #f9f9f9;
+      }
+      header {
+        background: #2c3e50;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0 0 10px 0;
+        font-size: 24px;
+      }
+      header p {
+        margin: 0;
+        font-size: 14px;
+        color: #bdc3c7;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+
+      /* 目次のスタイル */
+      .toc {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 30px;
+      }
+      .toc summary {
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      /* 親のリスト */
+      .toc ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+      }
+      .toc li {
+        margin-bottom: 6px;
+      }
+      /* 子・孫のリスト（階層を下げて少しインデント） */
+      .toc ul ul {
+        margin-top: 4px;
+        margin-left: 15px;
+        list-style-type: circle;
+      }
+      .toc a {
+        color: #3498db;
+        text-decoration: none;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+      }
+
+      /* 内容 */
+      main section {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      main h2 {
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 5px;
+        margin-top: 0;
+        font-size: 20px;
+        color: #2c3e50;
+      }
+      main h3 {
+        color: #2c3e50;
+        margin-top: 20px;
+        border-left: 4px solid #3498db;
+        padding-left: 8px;
+      }
+      main h4 {
+        margin: 18px 0 6px 0;
+        color: #2c3e50;
+      }
+      main ol,
+      main ul {
+        margin: 6px 0 10px 0;
+        padding-left: 22px;
+      }
+      main li {
+        margin-bottom: 4px;
+      }
+      .note {
+        background: #fff8e1;
+        border-left: 4px solid #f39c12;
+        padding: 8px 12px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+
+      /* スクリーンショット(画像)を横に並べる。幅が足りないときは、下に折り返す */
+      .shots {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 10px 0;
+      }
+      .shots figure {
+        margin: 0;
+        width: 200px;
+      }
+      .shots img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+      }
+      .shots figcaption {
+        font-size: 12px;
+        color: #777;
+        margin-top: 4px;
+      }
+      /* 横長の画像(PC・iPadの横画面)用。画面が狭いときは、自動で幅いっぱいに縮む */
+      .shots.wide figure {
+        width: 100%;
+        max-width: 480px;
+      }
+      /* どの画像も、はみ出さないようにする保険 */
+      main img {
+        max-width: 100%;
+        height: auto;
+      }
+      /* 画像をタップしたときの、拡大表示 */
+      .shots img {
+        cursor: zoom-in; /* 押せることを、マウスの形で伝える */
+      }
+      .lightbox {
+        display: none; /* ふだんは、見えない */
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.85);
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        cursor: zoom-out;
+      }
+      .lightbox.open {
+        display: flex; /* 開いたときだけ、画面いっぱいに出す */
+      }
+      .lightbox img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+        background: #fff;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>勇志祭 レジマニュアル</h1>
+      <p>Powered by sunaneko</p>
+    </header>
+
+    <div class="container">
+      <!-- 階層化された目次 -->
+      <nav class="toc">
+        <details open>
+          <summary>目次（クリックで開閉）</summary>
+          <ul><li><a href="#section1">1. はじめに</a></li>
+              <li><a href="#section2">2. 注意事項</a></li>
+              <li><a href="#section3">3. 使い方</a>
+              <ul><li><a href="#section3-1">3-1. お客様画面</a></li>
+                  <li><a href="#section3-2">3-2. レジ画面</a></li>
+                  <li><a href="#section3-3">3-3. 注文受注画面</a></li>
+                  <li><a href="#section3-4">3-4. 管理者画面</a></li></ul>
+              </li>
+              <li><a href="#section4">4. トラブル時</a></li>
+          </ul>
+        </details>
+      </nav>
+
+      <!-- 内容 -->
+      <main>
+        <section id="section1">
+          <h2>1. はじめに</h2>
+          <p>本システムは、モバイルオーダーとレジシステムを組み合わせた一体型WEBシステムです。<br/>
+             スタッフの注文・会計ミスによるトラブルを防ぎ、回転効率を高める目的のものであり、
+             オートディスペンサーには非対応のためあらかじめ留意してください。</p>
+        </section>
+
+        <section id="section2">
+          <h2>2. 注意事項</h2>
+          <h4>1. システム利用における注意事項</h4>
+          <p><b>1-1. PINを他の人に見せないでください。</b><br/>
+             システムは役割ごとに別のPINが割り振られています。第三者に知られると予期せぬ操作や<br>
+             トラブルの原因となるため、厳重に管理してください。<br/>
+             PINを何度も間違えると、一定時間アクセスできなくなります。</p>
+          <p><b>1-2. 不要な操作は避けてください。</b><br/>
+             処理が重いときに連続でボタンをタップしたり、ブラウザの「進む」「戻る」ボタン等を使用すると、<br/>
+             思わぬトラブルの原因となります。<br/>
+             システム上サーバーを介しているため、更新に時間がかかる場合があります。<br/>
+             反応がない場合に限り、時間を置くか一度リロードしてください。</p>
+          <p><b>1-3. 管理者画面の操作について</b><br/>
+             管理者画面はシステムの設定に関わるので、誤操作を防ぐため<b>
+             管理者および責任者以外のスタッフはアクセスしないでください。</b>
+             設定変更や確認が必要な場合は、必ず担当者へ相談·報告してください。</p>
+          <p><b>1-4. インターネット・Wi-Fi接続が必要になります。</b><br/>
+             画面右上に接続の状態を表すステータスがあります。<b>「接続中」</b>なら利用可能です。<br/>
+             <b>「再接続中…」</b>なら接続するまで待つか、インターネット・Wi-Fiの接続を確認してください。</p>
+          <p><b>1-5. 使い終わったら、ログアウトしてください。</b><br>
+             各画面の右上に「ログアウト」ボタンがあります。端末を他の人に渡すときや、持ち場を離れるときに使ってください。                <br> 「ログインの有効期限が切れました」と出たときは、もう一度PINを入力してログインします。</p>
+        </section>
+
+        <section id="section3">
+          <h2>3. 使い方</h2>
+          <p>スタッフが使う画面は、次の3つです(お客様は、各卓のQRコードから開きます)。</p>
+          <ul>
+            <li><a href="https://pos-serverv-3.replit.app/pos/" target="_blank" rel="noopener">レジ画面</a> PIN：0829</li>
+            <li><a href="https://pos-serverv-3.replit.app/cafe/" target="_blank" rel="noopener">カフェ画面</a> PIN：6583</li>
+            <li>管理者画面・PIN：非公開</li>
+          </ul>
+          <p>どの画面も、はじめにPINを入力してログインします。</p>
+
+          <h3 id="section3-1">3-1. お客様画面</h3>
+          <p>お客様が、スマホで使う画面です。お客様に聞かれたときの参考にしてください。</p>
+          <h4>お客様の流れ</h4>
+          <p>１．QRを読み込む<br>
+             ２．人数・ドリンクを選択<small> 参照：画像#1, #2</small><br>
+             [-],[+]で数字を変更できます。変更したら、「次へ」,[メニューへ]で進めます。<br>
+             ※ドリンクは人数分選択できます。</p>
+          <div class="shots">
+            <figure>
+              <img src="images/Public_1.jpg" alt="人数を選ぶ画面">
+              <figcaption>画像#1 人数選択</figcaption>
+            </figure>
+            <figure>
+              <img src="images/Public_2.jpg" alt="ドリンクを選ぶ画面">
+              <figcaption>画像#2 ドリンク選択</figcaption>
+            </figure>
+          </div>
+          
+          <p>３．メニューを注文(任意)<small> 参照：画像#3</small><br>
+             メニューはそれぞれ[ドリンク][フード][追加ゲーム]に分かれています。<br>
+             </p>
+          <h4>注文の流れ</h4>
+          <p>1. ほしい商品をタップ<br>
+             2. 数を選択<br>
+             3. カートを開き、合っていれば注文を確定</p>
+          <div class="shots">
+            <figure>
+              <img src="images/Public_3.jpg" alt="注文の画面">
+              <figcaption>画像#3 注文</figcaption>
+            </figure>
+          </div>
+          
+          <p>４．会計<small> 参照：画像#4-1, #4-2, #4-3</small><br>
+             最後に会計するときの画面です。</p>
+          <h4>会計の流れ</h4>
+          <p>1. 注文状況を開き、「会計する」ボタンをタップ<br>
+             2. 問題がなければそのまま「会計に進む」をタップ<br>
+          <small>※届いていない商品があればスタッフが対応してください。</small><br>
+             3. スタッフの指示に従って会計。<small>※現金のみ対応</small></p>
+          <div class="shots">
+            <figure>
+              <img src="images/Public_4-1.jpg" alt="会計の画面">
+              <figcaption>画像#4-1, 会計</figcaption>
+            </figure>
+            <figure>
+              <img src="images/Public_4-2.jpg" alt="会計の画面">
+              <figcaption>画像#4-2, 会計</figcaption>
+            </figure>
+            <figure>
+              <img src="images/Public_4-3.jpg" alt="会計の画面">
+              <figcaption>画像#4-3, 会計</figcaption>
+            </figure>
+          </div>
+          
+          <h3 id="section3-2">3-2. レジ画面</h3>
+          <p>1-1. 「会計中」と表示されている、卓番号をタップします。<small> 参照：画像#1-1</small><br>
+             卓番号とお客様を間違えないようにしてください。</p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Pos_1-1.png" alt="レジの画面">
+              <figcaption>画像#1-1, 会計</figcaption>
+            </figure>
+          </div>
+          <p>1-2. 中学生向けの無料チケットを適用させてください。<small> 参照：画像#1-2</small><br>
+             適用した人数分の入場料(300円)が引かれます。</p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Pos_1-2.png" alt="レジの画面">
+              <figcaption>画像#1-2, 会計</figcaption>
+            </figure>
+          </div>
+          <p>2. 「会計へ進む」をタップし次の画面へ進んでください。<small> 参照：画像#2</small><br>
+             お預かりした金額を入力し、確定したら「会計確定」ボタンをタップしてください。</p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Pos_2.png" alt="レジの画面">
+              <figcaption>画像#2, 会計</figcaption>
+            </figure>
+          </div>
+          <p>3. お会計の最終画面で、確認にご利用ください。<small> 参照：画像#3</small><br>
+             左側のお釣り内訳でどの金種を何枚渡せばよいか表示されます。</p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Pos_3.png" alt="レジの画面">
+              <figcaption>画像#3, 会計</figcaption>
+            </figure>
+          </div>
+          <p>4. 取引履歴<small> 参照：画像#4</small><br>
+             過去のすべての取引の履歴を確認できます。</p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Pos_4.png" alt="レジの画面">
+              <figcaption>画像#4, 会計</figcaption>
+            </figure>
+          </div>
+          
+          <h3 id="section3-3">3-3. 注文受注画面(Cafe)</h3>
+          <p>1-1. 「未提供」の画面で、注文が入った卓のカードを確認します。<small> 参照：画像#1-1</small><br>
+             注文は自動で表示されます。待ち時間が長くなるとカードの色が変わるので、優先して対応してください。<br>
+          <small>※「入場」のマークは入場ドリンクです。トッピングはフードの下に表示されます。</small></p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Cafe_1-1.png" alt="カフェの画面">
+              <figcaption>画像#1-1, 注文受注</figcaption>
+            </figure>
+          </div>
+          <p>1-2. 品を出したら、その行の「提供」をタップします。<small> 参照：画像#1-2</small><br>
+            「提供しますか?」と確認のポップアップが出るので、卓と品名を確認して「提供する」をタップしてください。<br>
+            <small>※卓の品を全部出したときは、カード下の「全部提供」が便利です。</small></p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Cafe_1-2.png" alt="カフェの画面">
+              <figcaption>画像#1-2, 確認のポップアップ</figcaption>
+            </figure>
+          </div>
+          <p>2. 出した品は、「提供済み」で確認できます。<small> 参照：画像#2</small><br>
+             出したか分からなくなったときに使ってください。<br>
+             <small>※提供したあとは取り消せません。お客様の画面も「提供済み」に変わります。</small></p>
+          <div class="shots wide">
+            <figure>
+              <img src="images/Cafe_2.png" alt="カフェの画面">
+              <figcaption>画像#2, 提供一覧(履歴)</figcaption>
+            </figure>
+          </div>
+          <h3 id="section3-4">3-4. 管理者画面</h3>
+          <p>管理者画面は一部の人のみアクセスが許可されています。設定変更や確認が必要な場合は、
+             必ず担当者へ相談·報告してください。</p>
+        </section>
+        <section id="section4">
+          <h2>4. トラブル時</h2>
+          <p><b>トラブル・不具合が発生したら自分で解決しようとせずに、システム管理者に報告してください。</b></p>
+        </section>
+      </main>
+    </div>
+
+    <!-- 画像の拡大表示(ふだんは、見えません) -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="画像の拡大表示">
+      <button type="button" class="lightbox-close" aria-label="閉じる">×</button>
+      <img alt="" />
+    </div>
+
+    <script src="lightbox.js"></script>
+  </body>
+</html>

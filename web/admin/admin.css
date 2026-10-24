@@ -1,0 +1,93 @@
+/* ============================================================
+   admin専用: テンプレートの「外枠」に合わせるための上書き(/shared/ui.css のあとに読み込む)
+   左が、テンプレートで使われている Tailwind のクラス。右が、このファイルでの対応する値。
+   数字を変えれば、見た目が変わります。確認が済んだら、共通の ui.css に移して、ほかの画面にも広げます。
+   ============================================================ */
+
+/* ----- ページ全体 ----- 【テンプレート】<body class="bg-gray-100 flex items-center justify-center"> */
+html { height: 100%; }
+body {
+  height: 100%;
+  height: 100dvh;                 /* 画面の高さ(スマホのバーの出入りに合わせる) */
+  display: flex;                  /* flex */
+  align-items: center;            /* items-center */
+  justify-content: center;        /* justify-center */
+  background: #f3f4f6;            /* bg-gray-100 */
+}
+#app { width: 100%; height: 100%; }
+
+/* ----- 外枠(白い箱) ----- 【テンプレート】<div class="w-full h-full max-w-4xl mx-auto bg-white shadow-2xl rounded-lg flex flex-col overflow-hidden"> */
+.app {
+  width: 100%;                    /* w-full */
+  height: 100%;                   /* h-full */
+  min-height: 0;
+  max-width: 70rem;               /* 1120px。posと同じ幅。広い画面でも、この幅まで */
+  margin: 0 auto;                 /* mx-auto */
+  background: #ffffff;            /* bg-white */
+  border-radius: 0.5rem;          /* rounded-lg = 8px */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  display: flex;                  /* flex */
+  flex-direction: column;         /* flex-col */
+  overflow: hidden;               /* overflow-hidden(はみ出しは、中のスクロールで見る) */
+}
+
+/* ----- 上のバー ----- 【テンプレート】<header class="bg-gray-800 text-white p-4 flex justify-between items-center flex-shrink-0"> */
+.hdr {
+  position: static;               /* 固定は不要(箱の中で、上に残る) */
+  flex-shrink: 0;                 /* flex-shrink-0 */
+  padding: 1rem;                  /* p-4 = 16px */
+  background: #1f2937;            /* bg-gray-800 */
+  color: #ffffff;                 /* text-white */
+  justify-content: space-between; /* justify-between */
+  align-items: center;            /* items-center */
+}
+/* タイトル 【テンプレート】<h1 class="text-xl font-bold"> */
+.hdr h1 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 700; }
+/* 右のボタンのまとまり 【テンプレート】<div class="flex gap-2"> */
+.nav { display: flex; gap: 0.5rem; }
+.hdr .btn { min-height: 2.5rem; padding: 0.5rem 0.875rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 700; }
+
+/* ----- 中身の領域 ----- 【テンプレート】<main class="flex-grow p-4 ... overflow-hidden min-h-0"> */
+.main {
+  flex: 1 1 0%;                   /* flex-grow(残りの高さを、全部使う) */
+  min-height: 0;                  /* min-h-0 */
+  overflow-y: auto;               /* 中身が長いときは、ここだけスクロール(上のバーは動かない) */
+  padding: 1rem;                  /* p-4 */
+}
+
+/* ----- カード・行 ----- 【テンプレート】一覧の枠: bg-gray-50 rounded-lg border border-gray-100 / 1つ1つ: bg-white p-4 rounded-lg border-2 border-gray-200 */
+.card {
+  background: #f9fafb;            /* bg-gray-50 */
+  border: 1px solid #f3f4f6;      /* border border-gray-100 */
+  border-radius: 0.5rem;          /* rounded-lg */
+}
+.row, .tcard {
+  background: #ffffff;            /* bg-white */
+  border: 2px solid #e5e7eb;      /* border-2 border-gray-200 */
+  border-radius: 0.5rem;          /* rounded-lg */
+}
+.tcard.open { border-color: #3b82f6; }
+.tcard.paying { border-color: #f97316; background: #fff7ed; }
+
+/* ----- ボタン・入力欄の角 ----- 【テンプレート】rounded-lg */
+.btn, .input, .seg button { border-radius: 0.5rem; }
+.modal { border-radius: 0.5rem; }
+
+/* ----- ログイン画面(外枠の中で、中央に置く。背が低い画面では、ここだけスクロール) ----- */
+.center {
+  flex: 1 1 0%;
+  min-height: 0;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem;
+  overflow-y: auto;
+}
+
+/* ----- ログアウトボタンの場所(スクロールする中身の、いちばん下) ----- */
+.foot { padding: 1rem 0 0.5rem; }
+
+/* ----- スマホ(箱の幅いっぱいになったとき): 角の丸みと影は、なくす ----- */
+@media (max-width: 1120px) {
+  .app { border-radius: 0; box-shadow: none; }
+}
